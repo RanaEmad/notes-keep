@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <link rel="stylesheet" href="<?= base_url() ?>assets/bootstrap-4.1.1/dist/css/bootstrap.min.css">
         <script src="<?= base_url() ?>assets/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-        <script src="<?= base_url() ?>assets/bootstrap-4.1.1/dist/css/bootstrap.min.css" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+        <script src="<?= base_url() ?>assets/bootstrap-4.1.1/dist/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="<?= base_url() ?>assets/css/main.css">
         <script>base_url = "<?= base_url() ?>"</script>
         <script type="text/javascript" src="<?= base_url() ?>assets/js/main.js"></script>
@@ -35,7 +35,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="container">
             <div class="row mb_10 mt_10">
                 <div class="col-sm-8 center">
-                    <input type="hidden" name="insert_note_id" id="insert_note_id" value="0">
                     <div class="card insert_note_card">
                         <div id="insert_note" class="card-body light_gray">
                             Take a note...
@@ -44,15 +43,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12">
-                    <?php 
+                <div class="col-sm-12 notes">
+                    <?php
                     $i=0;
-                    foreach ($notes as $note){ 
+                    foreach ($notes as $note){
                         $i++;
                         if($i==1){
                             ?>
                     <div class="row mb_10 mt_10">
-                    <?php 
+                    <?php
                         }
                         ?>
                     <div class="col-sm-3">
@@ -61,10 +60,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <h5 class="card-title"><?=$note->title?></h5>
                                 <p class="card-text"><?=$note->text?></p>
                             </div>
-                            
+
                         </div>
                     </div>
-                        
+
                         <?php if($i==4){
                              $i=0;
                             ?>
@@ -72,7 +71,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <?php
                         }
                         ?>
-                        
+
                     <?php } ?>
                 </div>
             </div>
