@@ -19,6 +19,24 @@ $(document).ready(function(){
       });
   }
 
+  function refresh_notes(notes){
+    $(".notes").empty();
+    var notes_html="";
+    var row=0;
+    $.each(notes, function(i,val){
+      row++;
+      if(row==1){
+        notes_html +='<div class="row mb_10 mt_10">';
+      }
+      notes_html +='  <div class="col-sm-3"><div class="card full-height"><div class="card-body"><h5 class="card-title">'+val.title+'</h5><p class="card-text">'+val.text+'</p></div></div></div>';
+      if(row==4){
+        notes_html +='</div>';
+        row=0;
+      }
+    });
+    $(".notes").append(notes_html);
+  }
+
   function reload_notes(){
         $.ajax({
           url: base_url+"Notes/get_notes",
@@ -26,21 +44,7 @@ $(document).ready(function(){
           success: function(response){
             response = JSON.parse(response);
             if(response.result=="success"){
-              $(".notes").empty();
-              var notes_html="";
-              var row=0;
-              $.each(response.notes, function(i,val){
-                row++;
-                if(row==1){
-                  notes_html +='<div class="row mb_10 mt_10">';
-                }
-                notes_html +='  <div class="col-sm-3"><div class="card full-height"><div class="card-body"><h5 class="card-title">'+val.title+'</h5><p class="card-text">'+val.text+'</p></div></div></div>';
-                if(row==4){
-                  notes_html +='</div>';
-                  row=0;
-                }
-              });
-              $(".notes").append(notes_html);
+              refresh_notes(response.notes)
             }
 
           }
@@ -60,6 +64,27 @@ $(document).ready(function(){
 
   $("body").on("click","#save_note",function(){
       insert_note();
+  });
+
+  $("#search").keyup(function(){
+    var search=$.trim($(this).val());
+    if(search != ""){
+      $.ajax({
+        url:base_url+"Notes/search",
+        type:"POST",
+        data:{"search":search},
+        success: function(response){
+          response= JSON.parse(response);
+          if(response.result=="success"){
+              refresh_notes(response.notes);
+          }
+
+        }
+      });
+    }
+    else{
+      reload_notes();
+    }
   });
 
 });// end document.ready

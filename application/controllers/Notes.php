@@ -33,4 +33,12 @@ class Notes extends CI_Controller {
       echo json_encode($response);
     }
 
+    public function search(){
+      $search= strtolower($this->input->post("search"));
+      $notes=$this->Notes_model->filter_notes($search);
+      $response['result']="success";
+      $response['notes']=$notes;
+      echo json_encode($response);
+    }
+
 }

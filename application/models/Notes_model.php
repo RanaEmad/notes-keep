@@ -8,4 +8,11 @@ class Notes_model extends CI_Model {
         $query=$this->db->get();
         return $query->result();
     }
+
+    function filter_notes($search){
+      $this->db->like("LOWER(title)",$search);
+      $this->db->or_like("LOWER(text)",$search);
+      $query= $this->db->get("notes");
+      return $query->result();
+    }
 }
