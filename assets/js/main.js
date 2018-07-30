@@ -28,7 +28,7 @@ $(document).ready(function(){
       if(row==1){
         notes_html +='<div class="row mb_10 mt_10">';
       }
-      notes_html +='  <div class="col-sm-3"><div class="card full-height"><div class="card-body"><h5 class="card-title">'+val.title+'</h5><p class="card-text">'+val.text+'</p></div></div></div>';
+      notes_html +='  <div class="col-sm-3"><div class="card full-height"><div class="card-body">  <span class="delete float-right text-danger" data-id="'+val.id+'"><i class="fa fa-trash"></i></span><h5 class="card-title">'+val.title+'</h5><p class="card-text">'+val.text+'</p></div></div></div>';
       if(row==4){
         notes_html +='</div>';
         row=0;
@@ -84,6 +84,24 @@ $(document).ready(function(){
     }
     else{
       reload_notes();
+    }
+  });
+
+  $("body").on("click",".delete",function(){
+    var id = $(this).attr("data-id");
+    var res= confirm("Are you sure you want to delete this note?");
+    if(res){
+      $.ajax({
+        url:base_url+"Notes/delete_note",
+        type:"POST",
+        data:{"id":id},
+        success: function(response){
+          response= JSON.parse(response);
+          if(response.result=="success"){
+            reload_notes();
+          }
+        }
+      });
     }
   });
 

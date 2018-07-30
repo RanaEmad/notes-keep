@@ -8,6 +8,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Notes</title>
         <link rel="stylesheet" href="<?= base_url() ?>assets/bootstrap-4.1.1/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
         <script src="<?= base_url() ?>assets/jquery-3.3.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="<?= base_url() ?>assets/bootstrap-4.1.1/dist/js/bootstrap.min.js"></script>
@@ -57,6 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col-sm-3">
                         <div class="card full-height">
                             <div class="card-body">
+                              <span class="delete float-right text-danger" data-id="<?=$note->id?>"><i class="fa fa-trash"></i></span>
                                 <h5 class="card-title"><?=$note->title?></h5>
                                 <p class="card-text"><?=$note->text?></p>
                             </div>

@@ -41,4 +41,12 @@ class Notes extends CI_Controller {
       echo json_encode($response);
     }
 
+    public function delete_note(){
+      $id= $this->input->post("id");
+      $this->Crud_model->delete("notes",$id);
+      $response['result']="success";
+      echo json_encode($response);
+      // redirect(base_url("Notes"));
+    }
+
 }

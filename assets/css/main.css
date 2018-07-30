@@ -34,3 +34,13 @@ div:empty:before {
   content:attr(data-text);
   color:gray
 }
+.delete{
+  cursor: pointer;
+}
+
+/* .card{
+  -webkit-box-shadow: 0 0 10px 1px #dd9696;
+    -moz-box-shadow: 0 0 10px 1px #dd9696;
+    box-shadow: 0 0 10px 1px #dd9696;
+    /* #9fc5d0 */
+/* } */
