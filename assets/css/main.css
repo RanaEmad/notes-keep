@@ -34,8 +34,11 @@ div:empty:before {
   content:attr(data-text);
   color:gray
 }
-.delete{
+.delete, .note{
   cursor: pointer;
+}
+.modal-body{
+  padding-bottom: 30px;
 }
 
 /* .card{

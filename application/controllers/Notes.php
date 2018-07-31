@@ -26,6 +26,17 @@ class Notes extends CI_Controller {
         echo json_encode($response);
     }
 
+    public function update_note(){
+      $id= $this->input->post("id");
+        $data=array(
+            "title"=>  $this->input->post("title"),
+            "text"=>$this->input->post("text")
+        );
+        $id=$this->Crud_model->update("notes",$id,$data);
+        $response['result']="success";
+        echo json_encode($response);
+    }
+
     public function get_notes(){
       $notes=  $this->Notes_model->get_notes();
       $response['result']="success";

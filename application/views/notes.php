@@ -56,9 +56,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         }
                         ?>
                     <div class="col-sm-3">
-                        <div class="card full-height">
+                        <div class="card full-height note" data-id="<?=$note->id?>">
                             <div class="card-body">
-                              <span class="delete float-right text-danger" data-id="<?=$note->id?>"><i class="fa fa-trash"></i></span>
+                              <span title="Delete Note" class="delete float-right text-danger" data-id="<?=$note->id?>"><i class="fa fa-trash"></i></span>
                                 <h5 class="card-title"><?=$note->title?></h5>
                                 <p class="card-text"><?=$note->text?></p>
                             </div>
@@ -79,5 +79,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
         <!--END NOTES-->
+        <!-- BEGIN MODAL -->
+        <div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog  modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <span title="Delete Note" id="modal-delete" class="delete text-danger" data-id="<?=$note->id?>"><i class="fa fa-trash"></i></span>
+          &nbsp;  <span id="modal-saving" class="text-gray"></span>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" contenteditable="true">
+        <h4 id="modal-title"></h4>
+        <div id="modal-text">
+
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+        <!-- END MODAL -->
     </body>
 </html>

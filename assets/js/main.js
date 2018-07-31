@@ -28,7 +28,7 @@ $(document).ready(function(){
       if(row==1){
         notes_html +='<div class="row mb_10 mt_10">';
       }
-      notes_html +='  <div class="col-sm-3"><div class="card full-height"><div class="card-body">  <span class="delete float-right text-danger" data-id="'+val.id+'"><i class="fa fa-trash"></i></span><h5 class="card-title">'+val.title+'</h5><p class="card-text">'+val.text+'</p></div></div></div>';
+      notes_html +='  <div class="col-sm-3"><div class="card full-height note" data-id="'+val.id+'"><div class="card-body">  <span title="Delete Note" class="delete float-right text-danger" data-id="'+val.id+'"><i class="fa fa-trash"></i></span><h5 class="card-title">'+val.title+'</h5><p class="card-text">'+val.text+'</p></div></div></div>';
       if(row==4){
         notes_html +='</div>';
         row=0;
@@ -104,5 +104,33 @@ $(document).ready(function(){
       });
     }
   });
+
+$("body").on("click",".note",function(){
+  var title=$(this).find( ".card-title" ).html();
+  var text = $(this).find( ".card-text" ).html();
+   $(".modal-body").attr("data-id",$(this).attr("data-id"));
+  $("#modal-title").html(title);
+  $("#modal-text").html(text);
+    $(".modal").modal("toggle");
+});
+
+$(".modal-body").keyup(function(){
+  $("#modal-saving").html(" Saving...");
+  var id=$(".modal-body").attr("data-id");
+  var title=$("#modal-title").val(title);
+  var text=$("#modal-text").html(text);
+  $.ajax({
+    url:base_url+"Notes/update_note",
+    type:"POST",
+    data:{"id":id},
+    success:function(response){
+      // response=JSON.parse(response);
+      // if(response.result=="success"){
+      //   $("#modal-saving").html(" Saved");
+      //   reload_notes();
+      // }
+    }
+  });
+});
 
 });// end document.ready
