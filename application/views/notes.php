@@ -90,9 +90,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body" contenteditable="true">
-        <h4 id="modal-title"></h4>
-        <div id="modal-text">
+        <div class="modal-body">
+        <h4 id="modal-title" contenteditable="true"></h4>
+        <div id="modal-text" contenteditable="true">
 
         </div>
         </div>

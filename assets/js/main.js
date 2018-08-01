@@ -117,18 +117,18 @@ $("body").on("click",".note",function(){
 $(".modal-body").keyup(function(){
   $("#modal-saving").html(" Saving...");
   var id=$(".modal-body").attr("data-id");
-  var title=$("#modal-title").val(title);
-  var text=$("#modal-text").html(text);
+  var title=$("#modal-title").html();
+  var text=$("#modal-text").html();
   $.ajax({
     url:base_url+"Notes/update_note",
     type:"POST",
-    data:{"id":id},
+    data:{"id":id,"title":title,"text":text},
     success:function(response){
-      // response=JSON.parse(response);
-      // if(response.result=="success"){
-      //   $("#modal-saving").html(" Saved");
-      //   reload_notes();
-      // }
+      response=JSON.parse(response);
+      if(response.result=="success"){
+        $("#modal-saving").html(" Saved");
+        reload_notes();
+      }
     }
   });
 });
