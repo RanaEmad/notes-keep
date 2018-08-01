@@ -84,7 +84,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="modal-dialog  modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-            <span title="Delete Note" id="modal-delete" class="delete text-danger" data-id="<?=$note->id?>"><i class="fa fa-trash"></i></span>
+            <span title="Delete Note" id="modal-delete" class="modal-delete text-danger" data-id="<?=$note->id?>"><i class="fa fa-trash"></i></span>
           &nbsp;  <span id="modal-saving" class="text-gray"></span>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>

@@ -24,6 +24,12 @@ $(document).ready(function(){
     var notes_html="";
     var row=0;
     $.each(notes, function(i,val){
+      if(!val.title){
+        val.title="";
+      }
+      if(!val.text){
+        val.text="";
+      }
       row++;
       if(row==1){
         notes_html +='<div class="row mb_10 mt_10">';
@@ -105,7 +111,29 @@ $(document).ready(function(){
     }
   });
 
-$("body").on("click",".note",function(){
+  $("body").on("click",".modal-delete",function(){
+    var id = $('.modal-body').attr("data-id");
+    var res= confirm("Are you sure you want to delete this note?");
+    if(res){
+      $.ajax({
+        url:base_url+"Notes/delete_note",
+        type:"POST",
+        data:{"id":id},
+        success: function(response){
+          response= JSON.parse(response);
+          if(response.result=="success"){
+            reload_notes();
+            $(".modal").modal("toggle");
+          }
+        }
+      });
+    }
+  });
+
+$("body").on("click",".note",function(e){
+  if($(e.target).closest('.delete').length>=1){
+    return;
+  }
   var title=$(this).find( ".card-title" ).html();
   var text = $(this).find( ".card-text" ).html();
    $(".modal-body").attr("data-id",$(this).attr("data-id"));
